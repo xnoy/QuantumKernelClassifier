@@ -1,0 +1,11 @@
+qiskit>=1.0.0
+qiskit-aer
+scikit-learn
+networkx
+matplotlib
+seaborn
+numpy
+nbformat
+nbconvert
+jupyter
+ipykernel

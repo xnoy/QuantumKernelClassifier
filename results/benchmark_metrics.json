@@ -1,0 +1,223 @@
+{
+  "processor_topologies": {
+    "processor_a": {
+      "name": "Processor A",
+      "num_qubits": 5,
+      "num_edges": 4,
+      "diameter": 4,
+      "avg_shortest_path": 2.0,
+      "avg_degree": 1.6
+    },
+    "processor_b": {
+      "name": "Processor B",
+      "num_qubits": 9,
+      "num_edges": 8,
+      "diameter": 5,
+      "avg_shortest_path": 2.6667,
+      "avg_degree": 1.7778
+    }
+  },
+  "kernel_analysis": {
+    "linear_entanglement": {
+      "off_diagonal_mean": 0.32279,
+      "off_diagonal_variance": 0.052502,
+      "off_diagonal_std": 0.229132,
+      "off_diagonal_range": [
+        0.000177,
+        0.997504
+      ],
+      "concentration_detected": false
+    },
+    "circular_entanglement": {
+      "off_diagonal_mean": 0.32279,
+      "off_diagonal_variance": 0.052502,
+      "off_diagonal_std": 0.229132,
+      "concentration_detected": false
+    }
+  },
+  "model_comparison": [
+    {
+      "model": "QSVM (Linear Ent.)",
+      "accuracy": 0.4,
+      "precision": 0.4167,
+      "recall": 0.5,
+      "f1_score": 0.4545
+    },
+    {
+      "model": "QSVM (Circular Ent.)",
+      "accuracy": 0.4,
+      "precision": 0.4167,
+      "recall": 0.5,
+      "f1_score": 0.4545
+    },
+    {
+      "model": "Classical RBF SVM (Tuned)",
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    {
+      "model": "Classical Poly SVM (deg=3)",
+      "accuracy": 0.8,
+      "precision": 0.875,
+      "recall": 0.7,
+      "f1_score": 0.7778
+    },
+    {
+      "model": "Classical Linear SVM",
+      "accuracy": 0.85,
+      "precision": 1.0,
+      "recall": 0.7,
+      "f1_score": 0.8235
+    }
+  ],
+  "transpilation_results_2q_kernel": [
+    {
+      "circuit": "2Q_Kernel",
+      "processor": "Processor A (Linear 5Q)",
+      "opt_level": 0,
+      "depth": 68,
+      "cx_count": 8,
+      "swap_estimate": 0.0,
+      "total_gates": 108
+    },
+    {
+      "circuit": "2Q_Kernel",
+      "processor": "Processor A (Linear 5Q)",
+      "opt_level": 1,
+      "depth": 21,
+      "cx_count": 6,
+      "swap_estimate": 0.0,
+      "total_gates": 33
+    },
+    {
+      "circuit": "2Q_Kernel",
+      "processor": "Processor A (Linear 5Q)",
+      "opt_level": 2,
+      "depth": 16,
+      "cx_count": 3,
+      "swap_estimate": 0.0,
+      "total_gates": 28
+    },
+    {
+      "circuit": "2Q_Kernel",
+      "processor": "Processor A (Linear 5Q)",
+      "opt_level": 3,
+      "depth": 16,
+      "cx_count": 3,
+      "swap_estimate": 0.0,
+      "total_gates": 28
+    },
+    {
+      "circuit": "2Q_Kernel",
+      "processor": "Processor B (Branched 9Q)",
+      "opt_level": 0,
+      "depth": 68,
+      "cx_count": 8,
+      "swap_estimate": 0.0,
+      "total_gates": 108
+    },
+    {
+      "circuit": "2Q_Kernel",
+      "processor": "Processor B (Branched 9Q)",
+      "opt_level": 1,
+      "depth": 21,
+      "cx_count": 6,
+      "swap_estimate": 0.0,
+      "total_gates": 33
+    },
+    {
+      "circuit": "2Q_Kernel",
+      "processor": "Processor B (Branched 9Q)",
+      "opt_level": 2,
+      "depth": 16,
+      "cx_count": 3,
+      "swap_estimate": 0.0,
+      "total_gates": 28
+    },
+    {
+      "circuit": "2Q_Kernel",
+      "processor": "Processor B (Branched 9Q)",
+      "opt_level": 3,
+      "depth": 16,
+      "cx_count": 3,
+      "swap_estimate": 0.0,
+      "total_gates": 28
+    }
+  ],
+  "transpilation_results_4q_stress_test": [
+    {
+      "circuit": "4Q_Full_Entanglement",
+      "processor": "Processor A (Linear 5Q)",
+      "opt_level": 0,
+      "depth": 70,
+      "cx_count": 54,
+      "swap_estimate": 10,
+      "total_gates": 98
+    },
+    {
+      "circuit": "4Q_Full_Entanglement",
+      "processor": "Processor A (Linear 5Q)",
+      "opt_level": 1,
+      "depth": 61,
+      "cx_count": 42,
+      "swap_estimate": 6,
+      "total_gates": 86
+    },
+    {
+      "circuit": "4Q_Full_Entanglement",
+      "processor": "Processor A (Linear 5Q)",
+      "opt_level": 2,
+      "depth": 61,
+      "cx_count": 42,
+      "swap_estimate": 6,
+      "total_gates": 86
+    },
+    {
+      "circuit": "4Q_Full_Entanglement",
+      "processor": "Processor A (Linear 5Q)",
+      "opt_level": 3,
+      "depth": 61,
+      "cx_count": 42,
+      "swap_estimate": 6,
+      "total_gates": 86
+    },
+    {
+      "circuit": "4Q_Full_Entanglement",
+      "processor": "Processor B (Branched 9Q)",
+      "opt_level": 0,
+      "depth": 70,
+      "cx_count": 42,
+      "swap_estimate": 6,
+      "total_gates": 86
+    },
+    {
+      "circuit": "4Q_Full_Entanglement",
+      "processor": "Processor B (Branched 9Q)",
+      "opt_level": 1,
+      "depth": 61,
+      "cx_count": 33,
+      "swap_estimate": 3,
+      "total_gates": 77
+    },
+    {
+      "circuit": "4Q_Full_Entanglement",
+      "processor": "Processor B (Branched 9Q)",
+      "opt_level": 2,
+      "depth": 60,
+      "cx_count": 33,
+      "swap_estimate": 3,
+      "total_gates": 76
+    },
+    {
+      "circuit": "4Q_Full_Entanglement",
+      "processor": "Processor B (Branched 9Q)",
+      "opt_level": 3,
+      "depth": 60,
+      "cx_count": 33,
+      "swap_estimate": 3,
+      "total_gates": 76
+    }
+  ]
+}

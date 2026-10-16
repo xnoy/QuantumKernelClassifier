@@ -1,0 +1,11 @@
+{
+  "name": "Processor A",
+  "description": "5-qubit Linear Chain topology",
+  "num_qubits": 5,
+  "coupling_map": [
+    [0, 1], [1, 0],
+    [1, 2], [2, 1],
+    [2, 3], [3, 2],
+    [3, 4], [4, 3]
+  ]
+}
