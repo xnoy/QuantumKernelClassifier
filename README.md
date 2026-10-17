@@ -38,14 +38,22 @@ qff2026-psq2-qsvm/
 │   ├── problem.py                          # Primary (moons), secondary (digits), quantum-aligned datasets
 │   ├── routing.py                          # Transpilation analysis, depth, CX, and SWAP overhead
 │   ├── metrics.py                          # Ideal & noisy kernel estimation, PSD mitigation, SVM benchmarking
-│   └── visualization.py                    # Publication-grade figures (300 DPI)
+│   ├── visualization.py                    # Publication-grade figures (300 DPI)
+│   └── showcase_figures.py                 # Comprehensive multi-model visual showcase generator
 └── results/
+    ├── decision_boundaries.png             # High-res 2-panel comparison (RBF vs QSVM)
     ├── figures/
-    │   ├── fig1_processor_topologies.png   # Side-by-side NetworkX coupling topologies
-    │   ├── fig2_architecture_comparison.png# Transpilation depth, CX, and SWAP bar chart
-    │   ├── fig3_kernel_matrices_and_concentration.png # Gram heatmaps & off-diagonal histograms
-    │   ├── fig4_decision_boundaries.png    # 2D contour comparisons (Ideal, Noisy, Mitigated, Classical)
-    │   └── fig5_accuracy_auc_comparison.png# 7-model performance with 95% Confidence Intervals
+    │   ├── showcase_decision_boundaries_all_models.png # 6-panel decision boundaries across all models
+    │   ├── showcase_processor_topologies.png           # Heterogeneous processor topologies & cycle highlights
+    │   ├── showcase_kernel_fidelity_and_mitigation.png # Gram heatmaps & PSD concentration recovery
+    │   ├── showcase_hardware_routing_tradeoffs.png     # Depth, CX, and SWAP reduction bar charts
+    │   ├── showcase_performance_metrics_radar.png      # 5-seed benchmark with 95% Confidence Intervals
+    │   ├── showcase_quantum_circuits.png               # Qiskit circuit decompositions (ZZFeatureMap)
+    │   ├── fig1_processor_topologies.png               # Side-by-side NetworkX coupling topologies
+    │   ├── fig2_architecture_comparison.png            # Transpilation depth, CX, and SWAP bar chart
+    │   ├── fig3_kernel_matrices_and_concentration.png  # Gram heatmaps & off-diagonal histograms
+    │   ├── fig4_decision_boundaries.png                # 2D contour comparisons
+    │   └── fig5_accuracy_auc_comparison.png            # 7-model performance comparison
     └── tables/
         ├── architecture_routing_comparison.csv # Complete hardware routing metrics
         ├── classification_benchmark_results.csv # 5-seed statistical benchmark scores
@@ -90,8 +98,11 @@ python3 -m src.routing
 # 4. Compute ideal & noisy hardware kernels, PSD mitigation & SVM benchmarks
 python3 -m src.metrics
 
-# 5. Render all 5 publication figures
+# 5. Render standard publication figures
 python3 -m src.visualization
+
+# 6. Render comprehensive multi-model visual showcase
+python3 src/showcase_figures.py
 ```
 
 ### Regenerate & Execute Notebook End-to-End
@@ -101,7 +112,61 @@ python3 generate_notebook.py
 
 ---
 
-## 4. Architectural Trade-Off Analysis
+## 4. Visual Showcase & Gallery
+
+This section provides visual comparisons across classical and quantum models, hardware routing topologies, kernel matrices, error mitigation, and performance metrics.
+
+### 4.1 Multi-Model Decision Boundaries Comparison
+Decision boundary landscapes on the nonlinearly separable `make_moons` dataset ($N=100$, 80/20 train/test split) comparing classical kernels (Linear, Polynomial, RBF) against quantum kernels (Ideal Statevector, Noisy Hardware Proc A, and Noise-Mitigated PSD Proc A):
+
+![Decision Boundaries Across All Models](results/figures/showcase_decision_boundaries_all_models.png)
+
+> **Key Insight**: Classical RBF kernel achieves 100% test accuracy via an infinite-dimensional radial Hilbert space, whereas the 4-qubit `ZZFeatureMap` creates structured quantum interference contours. Noisy hardware execution softens boundary margins due to depolarizing noise; our two-stage PSD mitigation sharpens the classification margin and recovers accuracy from 78% back to 80%.
+
+---
+
+### 4.2 Heterogeneous Hardware Topologies & Optimal Cycle Embedding
+Network coupling graphs for Processor A (5-qubit branching tree + 5-qubit ring alternative) and Processor B (9-qubit heavy-hex-inspired lattice), highlighting the dense 4-qubit cycle subgraph `[1, 2, 5, 6]`:
+
+![Processor Topologies Co-Design](results/figures/showcase_processor_topologies.png)
+
+> **Architectural Takeaway**: Processor B's heavy-hex cycle provides two independent routing channels between any pair of logical qubits, enabling 28% shallower transpiled circuits (depth 44 vs 61) and a 33% reduction in inserted SWAP gates (2 vs 3 SWAPs) compared to Processor A's branching tree.
+
+---
+
+### 4.3 Noise-Induced Concentration & PSD Error Mitigation
+Gram matrix heatmaps and off-diagonal kernel distribution density comparing Ideal Statevector, Raw Noisy Hardware (Proc A), and Noise-Mitigated PSD kernels:
+
+![Kernel Fidelity and Mitigation Recovery](results/figures/showcase_kernel_fidelity_and_mitigation.png)
+
+> **Mathematical Proof**: Depolarizing noise ($p_{2q}=0.005$) and readout errors ($p_{ro}=0.01$) compress off-diagonal kernel values toward a narrow spike (variance drops by 51% to 0.0037, diagonal drops to 0.716). Diagonal normalization $\tilde{K}_{ij} = \frac{K_{ij}}{\sqrt{K_{ii}K_{jj}}}$ and PSD eigenvalue clipping restore off-diagonal variance to 0.0071 and slash relative Frobenius error by **41.7% on Proc A** and **42.7% on Proc B**.
+
+---
+
+### 4.4 Transpilation & Hardware Routing Overhead
+Resource trade-offs across native topologies for Linear vs. Full entanglement:
+
+![Hardware Routing Trade-offs](results/figures/showcase_hardware_routing_tradeoffs.png)
+
+> **Routing Invariants**: Linear entanglement maps to a Hamiltonian path with zero SWAP overhead across both topologies. For full entanglement, the cycle subgraph on Processor B reduces circuit depth from 61 to 44 and CX gates from 33 to 30.
+
+---
+
+### 4.5 5-Seed Statistical Benchmark with 95% Confidence Intervals
+Rigorous statistical evaluation across seeds `[42, 100, 2026, 7, 99]` with mean and 95% Student's t Confidence Intervals:
+
+![Performance Metrics Benchmark](results/figures/showcase_performance_metrics_radar.png)
+
+---
+
+### 4.6 Qiskit Quantum Feature Map Circuits
+Decomposed quantum circuit architectures for 4-qubit `ZZFeatureMap(reps=2)` under Linear and Full entanglement schemes:
+
+![Quantum Feature Map Circuits](results/figures/showcase_quantum_circuits.png)
+
+---
+
+## 5. Architectural Trade-Off Analysis
 
 ### Processor Topology Invariants
 
@@ -137,7 +202,7 @@ To eliminate all remaining SWAP routing overhead for Phase 2 finalists:
 
 ---
 
-## 5. Statistical Benchmarking & QML vs. Classical Comparison
+## 6. Statistical Benchmarking & QML vs. Classical Comparison
 
 ### 5-Seed Benchmark Results (`classification_benchmark_results.csv`)
 
@@ -160,7 +225,7 @@ $$\text{Circuits} = \frac{N(N-1)}{2} = \frac{80 \times 79}{2} = \mathbf{3,160} \
 
 ---
 
-## 6. Mitigation of Kernel Concentration & PSD Correction
+## 7. Mitigation of Kernel Concentration & PSD Correction
 
 ### Noise-Induced Concentration
 Under two-qubit depolarizing error ($p_{2q}=0.005$) and readout errors ($p_{ro}=0.01$):
@@ -189,19 +254,19 @@ Mitigation reduces relative Frobenius error by **41.7% on Processor A** and **42
 
 ---
 
-## 7. Deliverables & Artifact Verification
+## 8. Deliverables & Artifact Verification
 
 - [x] **`main.ipynb`**: Fully executed top-to-bottom without warnings or errors.
 - [x] **`main.html` / `qsvm.html`**: Standalone web report viewable in any browser.
 - [x] **`report.md`**: Complete Phase 1 technical submission report.
 - [x] **`processors/`**: Creative JSON definitions for Processor A (branching tree + ring) and Processor B (heavy-hex).
-- [x] **`results/figures/`**: 5 high-resolution 300 DPI publication plots.
+- [x] **`results/figures/`**: Publication plots & comprehensive showcase gallery figures.
 - [x] **`results/tables/`**: CSV tables for routing, classification, and kernel fidelity.
 - [x] **`data/`**: Raw and processed `.npy` and `.csv` files for all 3 datasets.
 
 ---
 
-## 8. References
+## 9. References
 
 1. Havlíček, V., et al. "Supervised learning with quantum-enhanced feature spaces." *Nature* 567, 209–212 (2019).
 2. Thanasilp, S., et al. "Exponential concentration in quantum kernel methods." *Nature Communications* 15, 5200 (2024).

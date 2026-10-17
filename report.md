@@ -130,7 +130,19 @@ Evaluated across seeds `[42, 100, 2026, 7, 99]` on primary `make_moons` dataset 
 
 ---
 
-## 8. Final Judge Cheat Sheet & Key Numbers
+## 8. Visual Showcase & High-Resolution Figures
+
+All publication-grade figures are rendered at 300 DPI and located in `results/figures/`:
+- **Figure S1 (`showcase_decision_boundaries_all_models.png`)**: 6-panel decision landscapes comparing Linear, Polynomial, RBF, and QSVM (Ideal, Noisy, and PSD-Mitigated).
+- **Figure S2 (`showcase_processor_topologies.png`)**: Heterogeneous hardware topologies for Processor A (Tree/Ring) and Processor B (Heavy-Hex) highlighting the dense 4-qubit cycle `[1, 2, 5, 6]`.
+- **Figure S3 (`showcase_kernel_fidelity_and_mitigation.png`)**: Ideal vs Raw Noisy vs Mitigated Gram matrices and off-diagonal density distribution proving noise concentration recovery.
+- **Figure S4 (`showcase_hardware_routing_tradeoffs.png`)**: Circuit Depth, CX count, and SWAP reduction bar charts across topologies.
+- **Figure S5 (`showcase_performance_metrics_radar.png`)**: 5-seed statistical benchmark comparison with 95% Confidence Interval error bars.
+- **Figure S6 (`showcase_quantum_circuits.png`)**: Decomposed Qiskit circuit architectures for `ZZFeatureMap(reps=2)` under Linear and Full entanglement schemes.
+
+---
+
+## 9. Final Judge Cheat Sheet & Key Numbers
 
 Memorize these key numbers for the judges:
 
@@ -148,7 +160,7 @@ Memorize these key numbers for the judges:
 
 ---
 
-## 9. Phase 2 Readiness
+## 10. Phase 2 Readiness
 
 The pipeline is verified and fully prepared for Phase 2:
 - Dynamic circuit branching and mid-circuit measurement support.

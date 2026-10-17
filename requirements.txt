@@ -10,3 +10,4 @@ nbformat
 nbconvert
 jupyter
 ipykernel
+pylatexenc
