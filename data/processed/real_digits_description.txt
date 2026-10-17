@@ -1,0 +1,1 @@
+load_digits(n_class=2), subsample n=100, StandardScaler + PCA(n_components=4), scaled to [0,π]^4.

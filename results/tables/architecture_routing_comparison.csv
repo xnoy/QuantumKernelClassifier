@@ -1,0 +1,7 @@
+label,processor_name,entanglement,reps,logical_qubits,physical_qubits_budget,logical_cx_count,transpiled_depth,transpiled_cx_count,single_qubit_gates,total_gates,estimated_swap_overhead,sabre_swap_count
+Processor_A_5Q_Branching_Tree_linear_reps2_primary,Processor_A_5Q_Branching_Tree,linear,2,4,5,12,23,12,38,50,0,0
+Processor_A_5Q_Branching_Tree_ring_linear_reps2,Processor_A_5Q_Branching_Tree_ring,linear,2,4,5,12,23,12,38,50,0,0
+Processor_A_5Q_Branching_Tree_full_reps2_primary,Processor_A_5Q_Branching_Tree,full,2,4,5,24,61,33,44,77,3,0
+Processor_A_5Q_Branching_Tree_ring_full_reps2,Processor_A_5Q_Branching_Tree_ring,full,2,4,5,24,55,40,44,84,5,0
+Processor_B_9Q_Heavy_Hex_linear_reps2_primary,Processor_B_9Q_Heavy_Hex,linear,2,4,9,12,23,12,38,50,0,0
+Processor_B_9Q_Heavy_Hex_full_reps2_primary,Processor_B_9Q_Heavy_Hex,full,2,4,9,24,44,30,44,74,2,0

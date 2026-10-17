@@ -1,0 +1,53 @@
+{
+  "name": "Processor_B_9Q_Heavy_Hex",
+  "num_qubits": 9,
+  "description": "9-qubit heavy-hex-inspired processor (nodes 0-8). 12 undirected edges (24 directed). Primary topology for QFF 2026 Phase 1 Processor B benchmarking.",
+
+  "undirected_edges": [
+    [0, 1],
+    [1, 2],
+    [1, 6],
+    [2, 3],
+    [2, 6],
+    [2, 5],
+    [3, 4],
+    [4, 5],
+    [5, 6],
+    [6, 7],
+    [6, 8],
+    [8, 0]
+  ],
+
+  "directed_coupling_map": [
+    [0, 1], [1, 0],
+    [1, 2], [2, 1],
+    [1, 6], [6, 1],
+    [2, 3], [3, 2],
+    [2, 6], [6, 2],
+    [2, 5], [5, 2],
+    [3, 4], [4, 3],
+    [4, 5], [5, 4],
+    [5, 6], [6, 5],
+    [6, 7], [7, 6],
+    [6, 8], [8, 6],
+    [8, 0], [0, 8]
+  ],
+
+  "optimal_4q_subgraph": [1, 2, 5, 6],
+  "optimal_4q_subgraph_description": "Optimal 4-qubit cycle subgraph for ZZFeatureMap embedding: nodes [1,2,5,6] form a dense cycle within the heavy-hex graph with edges (1,2),(2,5),(5,6),(6,1),(2,6).",
+
+  "basis_gates": ["rz", "sx", "x", "cx"],
+
+  "noise_params": {
+    "p_1q": 0.001,
+    "p_2q": 0.005,
+    "p_ro": 0.01,
+    "description": "Frozen QFF 2026 synthetic noise: 1Q depolarizing p=0.001 on [rz,sx,x], 2Q depolarizing p=0.005 on [cx], symmetric readout error p=0.01 on all qubits."
+  },
+
+  "transpile_config": {
+    "optimization_level": 1,
+    "seed": 42,
+    "shots": 4096
+  }
+}

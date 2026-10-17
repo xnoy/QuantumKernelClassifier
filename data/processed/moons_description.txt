@@ -1,0 +1,1 @@
+make_moons(n=100, noise=0.1, seed=42), expansion='nonlinear', scaled to [0,π]^4.

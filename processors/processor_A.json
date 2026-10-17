@@ -1,0 +1,46 @@
+{
+  "name": "Processor_A_5Q_Branching_Tree",
+  "num_qubits": 5,
+  "description": "5-qubit branching-tree processor (nodes 0-4). Primary topology for QFF 2026 Phase 1 Processor A benchmarking.",
+
+  "undirected_edges": [
+    [0, 1],
+    [1, 2],
+    [1, 3],
+    [3, 4]
+  ],
+
+  "directed_coupling_map": [
+    [0, 1], [1, 0],
+    [1, 2], [2, 1],
+    [1, 3], [3, 1],
+    [3, 4], [4, 3]
+  ],
+
+  "custom_ring_edges": [
+    [0, 1],
+    [1, 2],
+    [2, 3],
+    [3, 4],
+    [4, 0]
+  ],
+  "custom_ring_description": "Alternative 5-qubit ring topology for creative coupling-map freedom analysis. All 5 qubits are connected in a cycle, providing uniform connectivity vs the branching tree.",
+
+  "optimal_4q_subgraph": [0, 1, 2, 3],
+  "optimal_4q_subgraph_description": "Best 4-qubit subgraph for ZZFeatureMap embedding on the branching-tree topology (path chain 0-1-2-3 or 0-1-3-4).",
+
+  "basis_gates": ["rz", "sx", "x", "cx"],
+
+  "noise_params": {
+    "p_1q": 0.001,
+    "p_2q": 0.005,
+    "p_ro": 0.01,
+    "description": "Frozen QFF 2026 synthetic noise: 1Q depolarizing p=0.001 on [rz,sx,x], 2Q depolarizing p=0.005 on [cx], symmetric readout error p=0.01 on all qubits."
+  },
+
+  "transpile_config": {
+    "optimization_level": 1,
+    "seed": 42,
+    "shots": 4096
+  }
+}

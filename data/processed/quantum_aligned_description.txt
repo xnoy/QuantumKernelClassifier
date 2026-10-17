@@ -1,0 +1,1 @@
+Synthetic quantum-aligned: 20 random [0,π]^4 samples, labels from ZZFeatureMap(reps=2) Z-parity expectation value. seed=42.
